@@ -1,0 +1,24 @@
+@layout('layout')
+
+@section('content')
+<form class="d-inline" method="POST" action="/comic/count">
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-dark">Comic Count</button>
+</form>
+<form class="d-inline" method="POST" action="/comic/archive">
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-dark">Comic Archive</button>
+</form>
+<form class="d-inline" method="POST" action="/comic/index">
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-dark">Comic Index</button>
+</form>
+<form class="d-inline" method="POST" action="/comic/sitemap">
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-dark">Comic Sitemap</button>
+</form>
+<form class="d-inline" method="POST" action="/post/archive">
+    {{ csrfField() }}
+    <button type="submit" class="btn btn-dark">Post Archive</button>
+</form>
+@endsection
