@@ -45,7 +45,7 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         const post = await collection.find({
             index: +request.input('index')
         }).next();
@@ -75,7 +75,7 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         const posts = await collection.find({}, {
             index: 1,
             title: 1,
@@ -97,7 +97,7 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         const post = await collection.find({
             index: +request.input('index')
         }).next();
@@ -145,7 +145,7 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         const post = await collection.find({
             index: +params.index
         }).next();
@@ -187,7 +187,7 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         await collection.updateOne({
             index: +request.input('index')
         }, {
@@ -217,14 +217,14 @@ class PostController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('posts');
+        const collection = mongo.db('pizzaandsadness').collection('posts');
         const posts = await collection.find({}, {
             index: 1,
             title: 1,
             thumb: 1
         }).sort({ index: -1 }).toArray();
         // update the file
-        const meta = mongo.db('powerofpower').collection('meta');
+        const meta = mongo.db('pizzaandsadness').collection('meta');
         const text = view.render('post.archive', { posts: posts });
         await fs.writeFile('_temp', text, 'utf8');
         const min = await minify({
