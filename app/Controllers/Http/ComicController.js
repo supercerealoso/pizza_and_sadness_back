@@ -49,7 +49,7 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comic = await collection.find({
             index: +request.input('index')
         }).next();
@@ -82,7 +82,7 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comics = await collection.find({}, {
             index: 1,
             title: 1,
@@ -93,12 +93,12 @@ class ComicController {
         return view.render('comic.list', { comics: comics });
     }
     async show({ view, params, response }) {
-        // get comic
+        // get com
         const mongo = new MongoClient(Env.get('MONGODB_URL', ''), {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comic = await collection.find({
             index: +params.index
         }).next();
@@ -143,7 +143,7 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         await collection.updateOne({
             index: +request.input('index')
         }, {
@@ -176,7 +176,7 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comic = await collection.find({
             index: +request.input('index')
         }).next();
@@ -234,10 +234,10 @@ class ComicController {
         });
         await mongo.connect();
         // get the count
-        const comics = mongo.db('powerofpower').collection('comics');
+        const comics = mongo.db('pizzaandsadness').collection('comics');
         const count = await comics.countDocuments({});
         // update the file
-        const meta = mongo.db('powerofpower').collection('meta');
+        const meta = mongo.db('pizzaandsadness').collection('meta');
         const text = JSON.stringify({ count: count });
         const buff = new Buffer(text);
         const register = await meta.find({
@@ -271,14 +271,14 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comics = await collection.find({}, {
             index: 1,
             title: 1,
             thumb: 1
         }).sort({ index: -1 }).toArray();
         // update the file
-        const meta = mongo.db('powerofpower').collection('meta');
+        const meta = mongo.db('pizzaandsadness').collection('meta');
         const text = view.render('comic.archive', { comics: comics });
         await fs.writeFile('_temp', text, 'utf8');
         const min = await minify({
@@ -322,20 +322,20 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comics = await collection.find({ top: true }, {
             index: 1,
             title: 1,
             thumb: 1
         }).sort({ index: -1 }).toArray();
-        const collection2 = mongo.db('powerofpower').collection('posts');
+        const collection2 = mongo.db('pizzaandsadness').collection('posts');
         const posts = await collection2.find({ top: true }, {
             index: 1,
             title: 1,
             thumb: 1
         }).sort({ index: -1 }).toArray();
         // update the file
-        const meta = mongo.db('powerofpower').collection('meta');
+        const meta = mongo.db('pizzaandsadness').collection('meta');
         const text = view.render('comic.index', { comics: comics, posts: posts });
         await fs.writeFile('_temp', text, 'utf8');
         const min = await minify({
@@ -379,11 +379,11 @@ class ComicController {
             useNewUrlParser: true
         });
         await mongo.connect();
-        const collection = mongo.db('powerofpower').collection('comics');
+        const collection = mongo.db('pizzaandsadness').collection('comics');
         const comics = await collection.find({}, {
             index: 1
         }).sort({ index: -1 }).toArray();
-        const collection2 = mongo.db('powerofpower').collection('posts');
+        const collection2 = mongo.db('pizzaandsadness').collection('posts');
         const posts = await collection2.find({}, {
             index: 1
         }).sort({ index: -1 }).toArray();
@@ -395,12 +395,12 @@ class ComicController {
         posts.forEach(function (post) {
             links.push('/blogarchive/' + post.index);
         });
-        const stream = new SitemapStream({ hostname: 'https://powerofpower.net' });
+        const stream = new SitemapStream({ hostname: 'https://pizzaandsadness.netlify.app' });
         links.forEach(link => stream.write(link));
         stream.end();
         const text = await streamToPromise(stream);
         // update the file
-        const meta = mongo.db('powerofpower').collection('meta');
+        const meta = mongo.db('pizzaandsadness').collection('meta');
         const buff = new Buffer(text);
         const register = await meta.find({
             name: 'sitemap'
