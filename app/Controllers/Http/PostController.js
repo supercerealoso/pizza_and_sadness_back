@@ -120,7 +120,7 @@ class PostController {
             // check if update is possible
             const file = await octokit.repos.createOrUpdateFileContents({
                 owner: 'supercerealoso',
-                repo: 'power_of_power_front',
+                repo: 'pizza_and_sadness_front',
                 path: name,
                 message: 'automated',
                 content: buff.toString('base64'),
@@ -242,7 +242,7 @@ class PostController {
         }).next() || {};
         const file = await octokit.repos.createOrUpdateFileContents({
             owner: 'supercerealoso',
-            repo: 'power_of_power_front',
+            repo: 'pizza_and_sadness_front',
             path: 'blog.html',
             message: 'automated',
             content: buff.toString('base64'),
