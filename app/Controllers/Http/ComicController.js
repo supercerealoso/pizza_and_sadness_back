@@ -203,7 +203,7 @@ class ComicController {
             // check if update is possible
             const file = await octokit.repos.createOrUpdateFileContents({
                 owner: 'supercerealoso',
-                repo: 'power_of_power_front',
+                repo: 'pizza_and_sadness_front',
                 path: name,
                 message: 'automated',
                 content: buff.toString('base64'),
@@ -245,7 +245,7 @@ class ComicController {
         }).next() || {};
         const file = await octokit.repos.createOrUpdateFileContents({
             owner: 'supercerealoso',
-            repo: 'power_of_power_front',
+            repo: 'pizza_and_sadness_front',
             path: 'comics/count.json',
             message: 'automated',
             content: buff.toString('base64'),
@@ -296,7 +296,7 @@ class ComicController {
         }).next() || {};
         const file = await octokit.repos.createOrUpdateFileContents({
             owner: 'supercerealoso',
-            repo: 'power_of_power_front',
+            repo: 'pizza_and_sadness_front',
             path: 'archive.html',
             message: 'automated',
             content: buff.toString('base64'),
@@ -353,7 +353,7 @@ class ComicController {
         }).next() || {};
         const file = await octokit.repos.createOrUpdateFileContents({
             owner: 'supercerealoso',
-            repo: 'power_of_power_front',
+            repo: 'pizza_and_sadness_front',
             path: 'index.html',
             message: 'automated',
             content: buff.toString('base64'),
@@ -407,7 +407,7 @@ class ComicController {
         }).next() || {};
         const file = await octokit.repos.createOrUpdateFileContents({
             owner: 'supercerealoso',
-            repo: 'power_of_power_front',
+            repo: 'pizza_and_sadness_front',
             path: 'sitemap.xml',
             message: 'automated',
             content: buff.toString('base64'),
